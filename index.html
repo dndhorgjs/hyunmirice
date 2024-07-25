@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Eternal time capsule Rememoria</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+
+    .bg {
+      /* The image used */
+      background-image: url('images/타임캡슐 이미지.png');
+
+      /* Full height */
+      height: 100%; 
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .btn-custom {
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #6C63FF;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #574b90;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 10px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    label,
+    input,
+    textarea {
+      margin: 5px 0;
+    }
+
+    input[type="submit"] {
+      align-self: center;
+      margin-top: 20px;
+      padding: 10px 20px;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      text-align: left;
+    }
+
+    .content h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: black;
+      margin-bottom: 20px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg">
+    <div class="content">
+      <h1>Eternal time capsule Rememoria</h1>
+      <div class="button-group">
+        <button class="btn-custom" onclick="openModal('loginModal')">Login / Register</button>
+        <button class="btn-custom" onclick="openModal('createModal')">Create Time Capsule</button>
+        <button class="btn-custom" onclick="openModal('editModal')">Edit Time Capsule</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+
+  <!-- Login/Register Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h2>Login / Register</h2>
+      <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Time Capsule Modal -->
+  <div id="createModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('createModal')">&times;</span>
+      <h2>Create Time Capsule</h2>
+      <form>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
+        <label for="content">Content:</label>
+        <textarea id="content" name="content"></textarea>
+        <label for="date">Open Date:</label>
+        <input type="date" id="date" name="date">
+        <input type="submit" value="Create">
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Time Capsule Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('editModal')">&times;</span>
+      <h2>Edit Time Capsule</h2>
+      <form>
+        <label for="editTitle">Title:</label>
+        <input type="text" id="editTitle" name="editTitle">
+        <label for="editContent">Content:</label>
+        <textarea id="editContent" name="editContent"></textarea>
+        <label for="editDate">Open Date:</label>
+        <input type="date" id="editDate" name="editDate">
+        <input type="submit" value="Save Changes">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = "block";
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = "none";
+    }
+
+    window.onclick = function (event) {
+      const modals = ['loginModal', 'createModal', 'editModal'];
+      modals.forEach(modalId => {
+        if (event.target == document.getElementById(modalId)) {
+          closeModal(modalId);
+        }
+      });
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        closeModal('loginModal');
+        alert('Login successful');
+      } else {
+        alert('Login failed');
+      }
+    });
+  </script>
+
+  <!-- Other content sections can be added here -->
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy; 2019 All Rights Reserved. Design by
+      <a href="https://html.design/">Free Html Templates</a>
+    </p>
+  </section>
+  <!-- end footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+
+</html>
